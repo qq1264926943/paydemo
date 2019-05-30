@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	
+	<constant name="struts.action.extension" value="do" /><!-- 多个后缀如:do,go -->
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.enable.DynamicMethodInvocation"
+		value="true" /><!-- 为true可以直接调用 action名!方法名.do,false则不行 -->
+    <!-- 默认访问页面 -->
+    <package name="default" extends="struts-default" namespace="/">
+        <default-action-ref name="default" />
+        <action name="default">
+            <result>index.jsp</result>
+        </action>
+    </package>
+
+    <!-- Struts2在2.5版本后添加strict-method-invocation(严格方法访问)，默认为true，不能使用动态方法调用功能，故需设为false -->
+    <package name="weixinPay" extends="struts-default" namespace="/wxpay"
+        strict-method-invocation="false">
+        <!-- 保存商品 -->
+        <action name="weixin*" class="com.weixin.WeixinPayAction" method="get{1}">
+            <result name="success">/weixin/weixinPay.jsp</result>
+        </action>
+    </package>
+    
+    <package name="zfbPay" extends="struts-default" namespace="/zfbpay"
+        strict-method-invocation="false">
+        <!-- 保存商品 -->
+        <action name="zfb*" class="com.zfb.AlipayAction" method="getAalipay{1}">
+            <result name="success">/zfb/index.jsp</result>
+            <result name="notify_url">/zfb/notify_url.jsp</result>
+            <result name="return_url">/zfb/return_url.jsp</result>
+        </action>
+    </package>
+
+    <!-- 引入资源文件 -->
+    <constant name="struts.custom.i18n.resources" value="messageResource"></constant>
+
+</struts>

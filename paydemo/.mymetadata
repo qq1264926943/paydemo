@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="paydemo"
+  id="myeclipse.1539828437930"
+  context-root="/maven_ssh"
+  j2ee-spec="1.7"
+  archive="paydemo.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+
